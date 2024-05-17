@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>shaders/polygon.vert</file>
+        <file>shaders/polygon.frag</file>
+        <file>shaders/points.vert</file>
+        <file>shaders/points.frag</file>
+    </qresource>
+</RCC>
