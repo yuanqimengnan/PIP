@@ -102,20 +102,19 @@ win32-g++{
 win32-msvc*{
     CONFIG += console
 
-    INCLUDEPATH += $$(VCPKG_HOME)/installed/x64-windows/include
+    LIBS += "-LC:\boost_1_83_0\stage\lib"
 
-    #http://stackoverflow.com/questions/5134245/how-to-set-different-qmake-configuration-depending-on-debug-release
+#http://stackoverflow.com/questions/5134245/how-to-set-different-qmake-configuration-depending-on-debug-release
     CONFIG(debug, debug|release) {
         WINDOWS_BIN_PATH = debug/
-        LIBS += "-L$$(VCPKG_HOME)/installed/x64-windows/$${WINDOWS_BIN_PATH}/lib" -lglew32d -lboost_filesystem-vc140-mt-gd -lboost_program_options-vc140-mt-gd -lboost_iostreams-vc140-mt-gd
+        LIBS += "-LC:\boost_1_83_0\stage\lib" -lglew32 -llibboost_filesystem-vc142-mt-gd-x64-1_83 -llibboost_program_options-vc142-mt-gd-x64-1_83 -llibboost_iostreams-vc142-mt-gd-x64-1_83
     } else {
         WINDOWS_BIN_PATH = ./
-        LIBS += "-L$$(VCPKG_HOME)/installed/x64-windows/$${WINDOWS_BIN_PATH}/lib" -lglew32 -lboost_filesystem-vc140-mt -lboost_program_options-vc140-mt -lboost_iostreams-vc140-mt
+        LIBS += "-LC:\boost_1_83_0\stage\lib" -lglew32 -llibboost_filesystem-vc142-mt-x64-1_83 -llibboost_program_options-vc142-mt-x64-1_83 -llibboost_iostreams-vc142-mt-x64-1_83
     }
 
     QMAKE_CXXFLAGS += -openmp
 
-    LIBS += "-L$$(VCPKG_HOME)/installed/x64-windows/$${WINDOWS_BIN_PATH}/bin"
     LIBS += "-ladvapi32"
     LIBS += -lopengl32 -lRpcRT4
 }
