@@ -10,7 +10,7 @@
 #define PROFILE_GL
 
 //#define FULL_SUMMARY_GL
-#define MAX_FBO_SIZE 8192
+#define MAX_FBO_SIZE 1000
 
 class GLHandler;
 struct GLBuffer;
@@ -51,7 +51,7 @@ protected:
 protected:
     GLBuffer *polyBuffer;
     GLTextureBuffer texBuf;
-    uint32_t psize;
+    uint32_t psize, pointsize;
     uint32_t nopolys;
     QVector<int> result;
 

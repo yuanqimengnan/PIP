@@ -76,8 +76,6 @@ inline GLuint64 getTime(GLuint query)
     return elapsed_time;
 }
 
-// TODO:
-// this->renderPoints(offset, (int)(result_size)); //多加一个偏移量？
 void RasterJoin::renderPoints()
 {
 
@@ -107,7 +105,7 @@ void RasterJoin::renderPoints()
     glBindTexture(GL_TEXTURE_2D, this->polyFbo->texture());
     glBindImageTexture(0, texBuf.texId, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_R32I);
 
-    glDrawArrays(GL_POINTS, 0, 2);
+    glDrawArrays(GL_POINTS, 0, pointsize);
     glDisableVertexAttribArray(0);
 
     glDisable(GL_BLEND);
@@ -147,9 +145,11 @@ void RasterJoin::performJoin()
     this->renderPolys();
     this->renderPoints();
 
-    int polyID;
-    polyID = texBuf.getBuffer();
-    std::cout << "The plan ID is: " << polyID << endl;
+    QVector<int> polyID;
+    polyID = texBuf.getBuffer(pointsize);
+    for (uint32_t i=0;i<pointsize;i++) {
+        std::cout << "The plan ID of point " << i << " is: " << polyID[i] << endl;
+    }
 
     texBuf.destroy();
 }

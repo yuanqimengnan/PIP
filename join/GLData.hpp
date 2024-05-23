@@ -69,7 +69,7 @@ struct GLTexture
 struct GLTextureBuffer {
     GLTextureBuffer(): texId(0) {}
     void create(int size, GLenum format, void *data);
-    int getBuffer();
+    QVector<int> getBuffer(uint32_t result_size);
     void destroy();
 
     int size;

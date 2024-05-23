@@ -49,12 +49,11 @@ void GLFunction::setupPolygons() {
 
 void GLFunction::setupPoints() {
     DataHandler * data = this->handler->dataHandler;
-    uint32_t point_size = 1;
-    this->pbuffer->resize(GL_DYNAMIC_DRAW, (point_size * 2 * sizeof(float)));
-    this->pbuffer->setData1(GL_DYNAMIC_DRAW, data->point.data(), point_size * 2 * sizeof(float), 0, false);
-    uint32_t result_size = 1; //number of records in the result
-    result = QVector<int>(result_size);
-    result[0]=9999;
+    pointsize = data->point.size() / 2;
+    this->pbuffer->resize(GL_DYNAMIC_DRAW, (pointsize * 2 * sizeof(float)));
+    this->pbuffer->setData1(GL_DYNAMIC_DRAW, data->point.data(), pointsize * 2 * sizeof(float), 0, false);
+    uint32_t result_size = pointsize;
+    result = QVector<int>(result_size, 9999);
     texBuf.create((result_size)  * sizeof(GLint), GL_R32I, result.data());
 
 }
