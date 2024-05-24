@@ -17,7 +17,7 @@ CXX           = g++
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DTRILIBRARY -DANSI_DECLARATORS -DNO_TIMER -DLINUX -DQT_QML_DEBUG -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -fopenmp -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I. -I-I -Itriangulation -I-I -Idb -I-I -Ijoin -I-I -isystem /usr/local/include -I-I -isystem /usr/include/boost -I-I -I/usr/local/cuda/include/ -I../QT/5.12.12/gcc_64/include -I../QT/5.12.12/gcc_64/include/QtOpenGL -I../QT/5.12.12/gcc_64/include/QtWidgets -I../QT/5.12.12/gcc_64/include/QtGui -I../QT/5.12.12/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I../QT/5.12.12/gcc_64/mkspecs/linux-g++
+INCPATH       = -I. -I-I -Itriangulation -I-I -Idb -I-I -Ijoin -I-I -Iexperiment -I-I -isystem /usr/local/include -I-I -isystem /usr/include/boost -I-I -I/usr/local/cuda/include/ -I../QT/5.12.12/gcc_64/include -I../QT/5.12.12/gcc_64/include/QtOpenGL -I../QT/5.12.12/gcc_64/include/QtWidgets -I../QT/5.12.12/gcc_64/include/QtGui -I../QT/5.12.12/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I../QT/5.12.12/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/liuziang/Desktop/QT/5.12.12/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -267,7 +267,8 @@ DIST          = ../QT/5.12.12/gcc_64/mkspecs/features/spec_pre.prf \
 		join/GLData.hpp \
 		join/GLFunction.hpp \
 		join/GLHandler.hpp \
-		join/RasterJoin.hpp main.cpp \
+		join/RasterJoin.hpp \
+		experiment/forexperiment.h main.cpp \
 		db/DataHandler.cpp \
 		triangulation/clip2tri/clip2tri.cpp \
 		triangulation/clipper/clipper.cpp \
@@ -658,7 +659,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents shaders.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../QT/5.12.12/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents db/DataHandler.hpp triangulation/clip2tri/clip2tri.h triangulation/clipper/clipper.hpp triangulation/poly2tri/common/shapes.h triangulation/poly2tri/common/utils.h triangulation/poly2tri/sweep/advancing_front.h triangulation/poly2tri/sweep/cdt.h triangulation/poly2tri/sweep/sweep.h triangulation/poly2tri/sweep/sweep_context.h triangulation/poly2tri/poly2tri.h triangulation/Triangle.hpp triangulation/TestTriangulation.hpp join/GLData.hpp join/GLFunction.hpp join/GLHandler.hpp join/RasterJoin.hpp $(DISTDIR)/
+	$(COPY_FILE) --parents db/DataHandler.hpp triangulation/clip2tri/clip2tri.h triangulation/clipper/clipper.hpp triangulation/poly2tri/common/shapes.h triangulation/poly2tri/common/utils.h triangulation/poly2tri/sweep/advancing_front.h triangulation/poly2tri/sweep/cdt.h triangulation/poly2tri/sweep/sweep.h triangulation/poly2tri/sweep/sweep_context.h triangulation/poly2tri/poly2tri.h triangulation/Triangle.hpp triangulation/TestTriangulation.hpp join/GLData.hpp join/GLFunction.hpp join/GLHandler.hpp join/RasterJoin.hpp experiment/forexperiment.h $(DISTDIR)/
 	$(COPY_FILE) --parents main.cpp db/DataHandler.cpp triangulation/clip2tri/clip2tri.cpp triangulation/clipper/clipper.cpp triangulation/poly2tri/common/shapes.cc triangulation/poly2tri/sweep/advancing_front.cc triangulation/poly2tri/sweep/cdt.cc triangulation/poly2tri/sweep/sweep.cc triangulation/poly2tri/sweep/sweep_context.cc join/GLData.cpp join/GLFunction.cpp join/GLHandler.cpp join/RasterJoin.cpp $(DISTDIR)/
 
 
@@ -870,6 +871,9 @@ main.o: main.cpp db/DataHandler.hpp \
 		../QT/5.12.12/gcc_64/include/QtGui/qmatrix4x4.h \
 		../QT/5.12.12/gcc_64/include/QtGui/qquaternion.h \
 		../QT/5.12.12/gcc_64/include/QtGui/qgenericmatrix.h \
+		experiment/forexperiment.h \
+		../QT/5.12.12/gcc_64/include/QtCore/QElapsedTimer \
+		../QT/5.12.12/gcc_64/include/QtCore/qelapsedtimer.h \
 		../QT/5.12.12/gcc_64/include/QtWidgets/QApplication \
 		../QT/5.12.12/gcc_64/include/QtWidgets/qapplication.h \
 		../QT/5.12.12/gcc_64/include/QtCore/qcoreapplication.h \
@@ -877,6 +881,9 @@ main.o: main.cpp db/DataHandler.hpp \
 		../QT/5.12.12/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../QT/5.12.12/gcc_64/include/QtGui/qguiapplication.h \
 		../QT/5.12.12/gcc_64/include/QtGui/qinputmethod.h \
+		../QT/5.12.12/gcc_64/include/QtCore/QFile \
+		../QT/5.12.12/gcc_64/include/QtCore/QTextStream \
+		../QT/5.12.12/gcc_64/include/QtCore/QDebug \
 		../QT/5.12.12/gcc_64/include/QtCore/QMap
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
@@ -940,6 +947,9 @@ DataHandler.o: db/DataHandler.cpp db/DataHandler.hpp \
 		triangulation/poly2tri/sweep/sweep_context.h \
 		triangulation/poly2tri/sweep/sweep.h \
 		triangulation/clip2tri/clip2tri.h \
+		experiment/forexperiment.h \
+		../QT/5.12.12/gcc_64/include/QtCore/QElapsedTimer \
+		../QT/5.12.12/gcc_64/include/QtCore/qelapsedtimer.h \
 		../QT/5.12.12/gcc_64/include/QtCore/QDebug \
 		../QT/5.12.12/gcc_64/include/QtCore/qdebug.h \
 		../QT/5.12.12/gcc_64/include/QtCore/qhash.h \
@@ -1604,10 +1614,11 @@ RasterJoin.o: join/RasterJoin.cpp join/RasterJoin.hpp \
 		triangulation/poly2tri/sweep/sweep_context.h \
 		triangulation/poly2tri/sweep/sweep.h \
 		triangulation/clip2tri/clip2tri.h \
-		../QT/5.12.12/gcc_64/include/QtGui/QOpenGLVertexArrayObject \
-		../QT/5.12.12/gcc_64/include/QtGui/qopenglvertexarrayobject.h \
+		experiment/forexperiment.h \
 		../QT/5.12.12/gcc_64/include/QtCore/QElapsedTimer \
-		../QT/5.12.12/gcc_64/include/QtCore/qelapsedtimer.h
+		../QT/5.12.12/gcc_64/include/QtCore/qelapsedtimer.h \
+		../QT/5.12.12/gcc_64/include/QtGui/QOpenGLVertexArrayObject \
+		../QT/5.12.12/gcc_64/include/QtGui/qopenglvertexarrayobject.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o RasterJoin.o join/RasterJoin.cpp
 
 qrc_shaders.o: qrc_shaders.cpp 

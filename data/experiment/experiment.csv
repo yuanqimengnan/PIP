@@ -1,0 +1,55 @@
+Current Time : 2024-05-24 14:43:32
+GPUPIP_normal
+initPolygons, initPoints, initGL, passPolygons, passPoints, renderPolygons, renderPoints, getResult, totalTime(nIter)
+0.41,0.03,102.34,0.012,0.002,0.026,0.014,12.48,228
+initPolygons, initPoints, initGL, passPolygons, passPoints, renderPolygons, renderPoints, getResult, totalTime(nIter)
+0.44,0.09,49.5,0.012,0.004,0.029,0.015,9.732,148
+initPolygons, initPoints, initGL, passPolygons, passPoints, renderPolygons, renderPoints, getResult, totalTime(nIter)
+0.42,0.68,53.22,0.012,0.01,0.028,0.015,9.456,150
+initPolygons, initPoints, initGL, passPolygons, passPoints, renderPolygons, renderPoints, getResult, totalTime(nIter)
+0.42,6.22,44.71,0.012,0.156,0.03,0.015,9.572,149
+initPolygons, initPoints, initGL, passPolygons, passPoints, renderPolygons, renderPoints, getResult, totalTime(nIter)
+0.45,56.31,46.9,0.013,1.263,0.039,0.017,17.001,287
+initPolygons, initPoints, initGL, passPolygons, passPoints, renderPolygons, renderPoints, getResult, totalTime(nIter)
+0.43,565.05,43.75,0.013,13.772,0.067,0.021,21.011,958
+RayCasting_normal
+4.95456
+0.290002
+0.590913
+3.55764
+37.2382
+330.941
+PostGIS_normal
+5.525
+5.823
+9.76
+76.023
+556.486
+4624.272
+GPUPIP_uniform
+initPolygons, initPoints, initGL, passPolygons, passPoints, renderPolygons, renderPoints, getResult, totalTime(nIter)
+0.42,0.03,69.13,0.012,0.003,0.025,0.014,17.763,248
+initPolygons, initPoints, initGL, passPolygons, passPoints, renderPolygons, renderPoints, getResult, totalTime(nIter)
+0.42,0.09,110.53,0.012,0.003,0.027,0.015,9.595,208
+initPolygons, initPoints, initGL, passPolygons, passPoints, renderPolygons, renderPoints, getResult, totalTime(nIter)
+0.42,0.67,55,0.012,0.01,0.027,0.014,9.425,151
+initPolygons, initPoints, initGL, passPolygons, passPoints, renderPolygons, renderPoints, getResult, totalTime(nIter)
+0.45,6.37,42.47,0.012,0.155,0.028,0.015,14.914,201
+initPolygons, initPoints, initGL, passPolygons, passPoints, renderPolygons, renderPoints, getResult, totalTime(nIter)
+0.42,56.47,46.38,0.012,1.161,0.03,0.015,12.176,237
+initPolygons, initPoints, initGL, passPolygons, passPoints, renderPolygons, renderPoints, getResult, totalTime(nIter)
+0.42,548.47,35.62,0.013,8.355,0.064,0.021,36.38,1033
+RayCasting_uniform
+0.335462
+0.329792
+7.26366
+3.67422
+33.3273
+337.877
+PostGIS_uniform
+5.36
+5.779
+9.718
+78.096
+543.6899999999999
+4665.686

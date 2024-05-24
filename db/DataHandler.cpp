@@ -1,4 +1,5 @@
 #include "DataHandler.hpp"
+#include "forexperiment.h"
 
 #include <QDebug>
 #include <QFile>
@@ -114,7 +115,12 @@ void DataHandler::readPoints(QString pointPath) {
 }
 
 void DataHandler::initData(QString polyPath, QString pointPath) {
+    timer.start();
     this->readPolygons(polyPath);
     this->getTriangulation(verts, ids);
+    initpolygons_time = timer.nsecsElapsed();
+
+    timer.restart();
     this->readPoints(pointPath);
+    initpoints_time = timer.nsecsElapsed();
 }

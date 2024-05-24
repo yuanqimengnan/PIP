@@ -1,6 +1,7 @@
 #include <GL/glew.h>
 #include "RasterJoin.hpp"
 #include "GLHandler.hpp"
+#include "forexperiment.h"
 #include <QOpenGLVertexArrayObject>
 #include <QElapsedTimer>
 #include <set>
@@ -139,17 +140,30 @@ void RasterJoin::renderPolys()
 
 void RasterJoin::performJoin()
 {
+    timer.restart();
     this->setupPolygons();
-    this->setupPoints();
+    passpolygons_time += timer.nsecsElapsed();
 
+    timer.restart();
+    this->setupPoints();
+    passpoints_time += timer.nsecsElapsed();
+
+    timer.restart();
     this->renderPolys();
+    renderpolygons_time += timer.nsecsElapsed();
+
+    timer.restart();
     this->renderPoints();
+    renderpoints_time += timer.nsecsElapsed();
 
     QVector<int> polyID;
+    timer.restart();
     polyID = texBuf.getBuffer(pointsize);
-    for (uint32_t i=0;i<pointsize;i++) {
-        std::cout << "The plan ID of point " << i << " is: " << polyID[i] << endl;
-    }
+    getresult_time += timer.nsecsElapsed();
+
+//    for (uint32_t i=0;i<pointsize;i++) {
+//        std::cout << "The plan ID of point " << i << " is: " << polyID[i] << endl;
+//    }
 
     texBuf.destroy();
 }

@@ -4,6 +4,11 @@ For GPUPlanCache
 ## Parameter
 --polyPath your_polygons_path
 --pointPath your_point_path
+--outputResult
+--experimentPath your_experiment_result_path
+--nIter number_of_iterations
+
+Note: If you do not specify the parameter "--outputResult", the experimental data will not be output to the experimentPath. 
 
 ## Description of polygons_file and points_file
 ### polygons_file

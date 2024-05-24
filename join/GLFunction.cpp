@@ -23,8 +23,6 @@ void GLFunction::setupForRender() {
 QVector<int> GLFunction::execute() {
 
     polySize = this->handler->dataHandler->getNoPolys();
-    // result = QVector<int>(polySize * 3,0);
-    // result = QVector<int>(result_size*4);
     this->setupForRender();
     return this->executeFunction();
 }

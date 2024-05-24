@@ -10,7 +10,7 @@
 #define PROFILE_GL
 
 //#define FULL_SUMMARY_GL
-#define MAX_FBO_SIZE 1000
+#define MAX_FBO_SIZE 8192
 
 class GLHandler;
 struct GLBuffer;

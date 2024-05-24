@@ -26,7 +26,6 @@ SOURCES += main.cpp \
     join/GLFunction.cpp \
     join/GLHandler.cpp \
     join/RasterJoin.cpp \
-    
 
 HEADERS += \
     db/DataHandler.hpp \
@@ -45,10 +44,12 @@ HEADERS += \
     join/GLFunction.hpp \
     join/GLHandler.hpp \
     join/RasterJoin.hpp \
+    experiment/forexperiment.h \
 
 INCLUDEPATH += -I ./triangulation/
 INCLUDEPATH += -I ./db/
 INCLUDEPATH += -I ./join/
+INCLUDEPATH += -I ./experiment/
 
 
 DEFINES     += "TRILIBRARY"
