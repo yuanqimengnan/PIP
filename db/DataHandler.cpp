@@ -1,4 +1,5 @@
 #include "DataHandler.hpp"
+#include "forexperiment.h"
 
 #include <QDebug>
 #include <QFile>
@@ -6,6 +7,7 @@
 #include <QString>
 #include <QTextStream>
 #include <omp.h>
+#include <iostream>
 DataHandler::DataHandler() {
 
 }
@@ -74,6 +76,16 @@ void DataHandler::getTriangulation(std::vector<float> &verts, std::vector<float>
         verts.insert(verts.end(),tverts[i].begin(),tverts[i].end());
         ids.insert(ids.end(),tids[i].begin(),tids[i].end());
     }
+
+
+//    float precision = 0.001;
+//    for(size_t i = 0; i < verts.size(); i++) {
+//        if (verts[i] - 0 <= precision) {
+//            verts[i] = 0.0;
+//        } else if (1 - verts[i] <= precision) {
+//            verts[i] = 1.0;
+//        }
+//    }
 }
 
 int DataHandler::getNoPolys() {
@@ -88,13 +100,27 @@ void DataHandler::readPoints(QString pointPath) {
     }
     QTextStream input(&fi);
     float point_x, point_y;
-    input >> point_x >> point_y;
-    point.push_back(point_x);
-    point.push_back(point_y);
+    while(!input.atEnd()) {
+        QString line = input.readLine();
+        if(line.trimmed().length() == 0) {
+            continue;
+        }
+        QStringList list = line.split(" ");
+        point_x = list[0].toFloat();
+        point_y = list[1].toFloat();
+        point.push_back(point_x);
+        point.push_back(point_y);
+    }
+    fi.close();
 }
 
 void DataHandler::initData(QString polyPath, QString pointPath) {
+    timer.start();
     this->readPolygons(polyPath);
     this->getTriangulation(verts, ids);
+    initpolygons_time = timer.nsecsElapsed();
+
+    timer.restart();
     this->readPoints(pointPath);
+    initpoints_time = timer.nsecsElapsed();
 }

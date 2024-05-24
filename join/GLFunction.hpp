@@ -51,7 +51,7 @@ protected:
 protected:
     GLBuffer *polyBuffer;
     GLTextureBuffer texBuf;
-    uint32_t psize;
+    uint32_t psize, pointsize;
     uint32_t nopolys;
     QVector<int> result;
 

@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <cassert>
+#include <iostream>
 
 #include "RasterJoin.hpp"
 #include <algorithm>
@@ -74,20 +75,17 @@ void GLHandler::initFunctions() {
 }
 
 QVector<int> GLHandler::executeFunction(FunctionType fn) {
+        if (dataHandler == NULL) {
+            qDebug() << "DataHandler not set.";
+            return QVector<int>();
+        }
 
-    if (dataHandler == NULL) {
-        qDebug() << "DataHandler not set.";
-        return QVector<int>();
-    }
-
-    // TODO: need to maintain queue
-    // for now simply running it
-    this->setupContext();
-    if(this->functions.contains(fn)) {
-        return this->functions[fn]->execute();
-    } else {
-        qDebug() << "Function type" << fn << "not yet supported";
-    }
+        this->setupContext();
+        if(this->functions.contains(fn)) {
+            return this->functions[fn]->execute();
+        } else {
+            qDebug() << "Function type" << fn << "not yet supported";
+        }
     return QVector<int>();
 }
 

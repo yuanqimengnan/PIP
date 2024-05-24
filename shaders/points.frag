@@ -1,7 +1,8 @@
 #version 430
 out vec4 fragColor;
+flat in int pointid;
 layout(std430, binding = 2) buffer MyBuffer {
-    int dynamic;
+    int dynamic[];
 };
 uniform sampler2D PolyTex;
 void main()
@@ -10,7 +11,7 @@ void main()
     int r = int (ceil(pix.r));
     int b = int (ceil(pix.b));
     if (r!=0) {
-        dynamic = b;
+        dynamic[pointid] = b;
     }
     fragColor = vec4(0,0,0,1);
 }

@@ -148,11 +148,11 @@ void GLTextureBuffer::create(int size, GLenum format, void* data)
     glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, ssbo);
 }
 
-int GLTextureBuffer::getBuffer()
+QVector<int> GLTextureBuffer::getBuffer(uint32_t result_size)
 {
-    int polysid;
+    QVector<int> polysid(result_size);
     glBindBuffer(GL_SHADER_STORAGE_BUFFER, ssbo);
-    glGetBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, sizeof(float), &polysid);
+    glGetBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, result_size * sizeof(float), polysid.data());
     GLenum err = glGetError();
     if( err > 0 ){
         QString strError;
